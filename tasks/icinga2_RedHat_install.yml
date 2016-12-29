@@ -21,7 +21,7 @@
 - name: Install Icinga2
   package:
     name: "{{ item.package }}"
-    state: latest
+    state: present
   with_items: "{{ icinga2_yum }}"
 
 - name: Start Icinga2

@@ -20,3 +20,9 @@
   when: "{{ check_commands | default('') | length}}"
   notify:
    - restart icinga2
+
+- name: Set a TicketSalt if configured
+  lineinfile:
+    dest: /etc/icinga2/constants.conf
+    regexp: ^const TicketSalt
+    line: const TicketSalt = "{{ icinga2_ticket_salt | default('') }}"
