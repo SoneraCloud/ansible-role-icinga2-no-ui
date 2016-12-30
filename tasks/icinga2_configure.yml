@@ -26,3 +26,12 @@
     dest: /etc/icinga2/constants.conf
     regexp: ^const TicketSalt
     line: const TicketSalt = "{{ icinga2_ticket_salt | default('') }}"
+
+- name: Remove monitoring config files (for using the API to add hosts etc)
+  file:
+    name: "/etc/icinga2/conf.d/{{ item }}"
+    state: absent
+  with_items:
+    - hosts.conf
+    - services.conf
+  when: icinga2_remove_monitoring_config
