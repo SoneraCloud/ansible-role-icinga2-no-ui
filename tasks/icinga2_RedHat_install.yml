@@ -29,3 +29,9 @@
     name: icinga2
     state: started
     enabled: yes
+
+- name: Disable lm_sensors (installed by nagios-plugins-sensors)
+  service:
+    name: lm_sensors
+    enabled: false
+    state: stopped
